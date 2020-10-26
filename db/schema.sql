@@ -19,7 +19,7 @@ CREATE TABLE IF NOT EXISTS project_readme (
   FOREIGN KEY (project_id) REFERENCES project (id) ON DELETE CASCADE
 );
 
-CREATE TABLE IF NOT EXISTS system (
+CREATE TABLE IF NOT EXISTS asdf_system (
   id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
   project_id BIGINT UNSIGNED NOT NULL,
   name VARCHAR(64) NOT NULL,
@@ -39,7 +39,7 @@ CREATE TABLE IF NOT EXISTS system_author (
   author_name VARCHAR(256) NOT NULL,
   type ENUM('author', 'maintainer') NOT NULL DEFAULT 'author',
   PRIMARY KEY (id),
-  FOREIGN KEY (system_id) REFERENCES system (id) ON DELETE CASCADE
+  FOREIGN KEY (system_id) REFERENCES asdf_system (id) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=binary;
 
 CREATE TABLE IF NOT EXISTS system_dependencies (
@@ -49,8 +49,8 @@ CREATE TABLE IF NOT EXISTS system_dependencies (
   is_for_defsystem TINYINT NOT NULL DEFAULT '0',
   PRIMARY KEY (id),
   UNIQUE KEY (system_id, depends_system_id, is_for_defsystem),
-  FOREIGN KEY (system_id) REFERENCES system (id) ON DELETE CASCADE,
-  FOREIGN KEY (depends_system_id) REFERENCES system (id) ON DELETE CASCADE
+  FOREIGN KEY (system_id) REFERENCES asdf_system (id) ON DELETE CASCADE,
+  FOREIGN KEY (depends_system_id) REFERENCES asdf_system (id) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=binary;
 
 CREATE TABLE IF NOT EXISTS system_extracted_info (
@@ -58,7 +58,7 @@ CREATE TABLE IF NOT EXISTS system_extracted_info (
   packages LONGTEXT NOT NULL DEFAULT '',
   failed TINYINT NOT NULL DEFAULT '0',
   error_log TEXT NOT NULL DEFAULT '',
-  FOREIGN KEY (system_id) REFERENCES system (id) ON DELETE CASCADE,
+  FOREIGN KEY (system_id) REFERENCES asdf_system (id) ON DELETE CASCADE,
   UNIQUE KEY (system_id)
 );
 
