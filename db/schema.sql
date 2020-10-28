@@ -55,7 +55,6 @@ CREATE TABLE IF NOT EXISTS system_dependencies (
 
 CREATE TABLE IF NOT EXISTS system_extracted_info (
   system_id BIGINT UNSIGNED NOT NULL,
-  --packages LONGTEXT NOT NULL DEFAULT '',
   packages LONGTEXT NOT NULL,
   failed TINYINT NOT NULL DEFAULT '0',
   error_log TEXT NOT NULL DEFAULT '',
