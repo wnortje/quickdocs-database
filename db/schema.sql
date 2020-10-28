@@ -57,7 +57,7 @@ CREATE TABLE IF NOT EXISTS system_extracted_info (
   system_id BIGINT UNSIGNED NOT NULL,
   packages LONGTEXT NOT NULL,
   failed TINYINT NOT NULL DEFAULT '0',
-  error_log TEXT NOT NULL DEFAULT '',
+  error_log TEXT NOT NULL,
   FOREIGN KEY (system_id) REFERENCES asdf_system (id) ON DELETE CASCADE,
   UNIQUE KEY (system_id)
 );
